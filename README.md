@@ -1,6 +1,6 @@
 # RPG : Inventory System
 
-When I was learning Python, I tried to do it by some different ways, the best way I found was trough making a <b>Text-RPG</b>, it was very funny and I've learned a lot!
+When I was learning Python, I tried to do it by some different ways, the best way I found was through making a <b>Text-RPG</b>, it was very funny and I've learned a lot!
 
 The most difficult part was the inventory, Jesus it was Hard! Now I'm a little more experienced than I was and I'm leaving this for the newcomers, hope it helps!
 
@@ -8,7 +8,7 @@ Now let's go to the explanation!
 
 # The Classes
 
-I've created two classes for this one, `Inventory` and `Item` (because you need to have something to put in your inventory, lol).
+I've created two classes for this one, `Inventory` and `Item` (because you need to have something to put in your inventory,).
 
 You can create the inventory as a `dict()` but I (personally) find it not effective! It's better to have functions inside it,
 I like to imagine the inventory as a <b>Backpack</b>, you can imagine the player interacting with it, and you can name (and function) the actions
@@ -20,7 +20,7 @@ Classes let you do almost exactly that! haha!
 class Inventory:
     
     # The Class Constructor
-    # This one is very basic, it just declares how many items you can fit 
+    # This one is very basic, it just declares how many items you can add 
     # in your inventory and creates an Empty list to keep them!
     def __init__(self, capacity):
         self.capacity = capacity
@@ -36,7 +36,7 @@ class Item:
         self.amount = amount
         self.individual_value = individual_value
     
-    # Property that shows the worth of the item (x amount).
+    # Property that shows the price of the item (x amount).
     @property
     def worth(self):
         return f'${self.amount * self.individual_value:.2f}'
@@ -45,7 +45,7 @@ class Item:
 We need to see those items somehow, so I've created the class `show()` inside the Inventory().
 
 ```python
-    # It iterates trough the list of items showing the index no., the amount and the item name.
+    # It iterates through the list of items showing the index no., the amount and the item name.
     def show(self):
         index = 1
         for item in self.items:
@@ -95,13 +95,15 @@ It haves an example of how to sell items, that is shown inside the `Item` Class.
 ```python
     def sell(self):
         if self.amount >= 1:
-            print('How many do you want to sell?')
+            print('How many items do you want to sell?')
             amt = int(input('amt > '))
             print(f'Are you sure you want to sell {self.amount} {self.name} for ${self.individual_value * amt:.2f}?')
             confirm = input('[y/n] > ')
             if confirm == 'y':
                 self.amount -= amt
                 print(f'{amt} {self.name} sold for ${amt * self.individual_value:.2f}!')
+             else:
+                print(f'Sale of {amt} {self.name} was canceled.')
 
 ```
 
